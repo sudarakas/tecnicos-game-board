@@ -1,5 +1,6 @@
 <?php
 
+use App\Game;
 namespace App\Http\Controllers;
 
 class HomeController extends Controller
@@ -21,6 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $games = Game::all();
+        return view('dashboard',compact('games'));
     }
 }

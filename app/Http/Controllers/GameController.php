@@ -14,7 +14,8 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        $games = Game::all();
+        return view('dashboard',compact('games'));
     }
 
     /**
@@ -35,7 +36,16 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:300|string',
+        ]);
+
+        $game = new Game;
+        $game->name = request('name');
+        $game->status = 'Unlocked';
+        $game->save();
+
+        return back()->withStatus(__('Game Successfully Added.'));
     }
 
     /**
@@ -44,9 +54,10 @@ class GameController extends Controller
      * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function show()
     {
-        //
+        $games = Game::all();
+        return view('welcome',compact('games'));
     }
 
     /**
@@ -55,10 +66,17 @@ class GameController extends Controller
      * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function edit(Game $game)
+    public function update(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required|max:300|string',
+        ]);
+        $game = Game::find(request('id'));
+        $game->name = request('name');
+        $game->status = request('status');
+        $game->save();
+
+        return back()->withStatus(__('Game Successfully Updated.'));    }
 
     /**
      * Update the specified resource in storage.
@@ -67,10 +85,6 @@ class GameController extends Controller
      * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Game $game)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

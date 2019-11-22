@@ -11,19 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'GameController@show')->name('home');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::group(['middleware' => 'auth'], function () {
+	
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+	Route::get('/home', 'GameController@index')->name('home');
 	Route::get('game/add', ['as' => 'game.add.view', 'uses' => 'GameController@create']);
+	Route::post('game/update', ['as' => 'game.update', 'uses' => 'GameController@update']);
 	Route::post('game/store', ['as' => 'game.store', 'uses' => 'GameController@store']);
 });
 

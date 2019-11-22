@@ -22,6 +22,14 @@
                     @csrf
 
                     <h6 class="heading-small text-muted mb-4">{{ __('Game information') }}</h6>
+                    @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
                     <div class="pl-lg-4">
                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                             <label class="form-control-label" for="input-name">{{ __('Game Name') }}</label>
