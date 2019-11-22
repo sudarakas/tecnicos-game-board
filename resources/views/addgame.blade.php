@@ -13,7 +13,7 @@
                         <h3 class="mb-0">{{ __('Game Management') }}</h3>
                     </div>
                     <div class="col-4 text-right">
-                        <a href="{{ route('user.index') }}" class="btn btn-md btn-warning">{{ __('Back') }}</a>
+                        <a href="/home" class="btn btn-md btn-warning">{{ __('Back') }}</a>
                     </div>
                 </div>
             </div>

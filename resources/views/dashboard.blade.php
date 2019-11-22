@@ -12,7 +12,7 @@
                         <h3 class="mb-0">Game List</h3>
                     </div>
                     <div class="col text-right">
-                        <a href="#!" class="btn btn-success">Add Game</a>
+                        <a href="{{route('game.add.view')}}" class="btn btn-success">Add Game</a>
                     </div>
                 </div>
             </div>
