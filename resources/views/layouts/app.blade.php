@@ -18,6 +18,10 @@
     <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <!-- Argon CSS -->
     <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
+    <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery-migrate-3.0.0.js"></script>
+    <link href="{{ asset('argon') }}/vendor/jquery/dist/jquery-ui.css" rel="stylesheet">
+    <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery-ui.min.js"></script>
 </head>
 
 <body class="{{ $class ?? '' }}">
@@ -37,8 +41,11 @@
     @include('layouts.footers.guest')
     @endguest
 
-    <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- Sweet Alert --}}
+    <script src="{{ asset('argon') }}/vendor/sweetalert/sweetalert.min.js"></script>
+    <!-- Include this after the sweet alert js file -->
+    @include('sweet::alert')
 
     @stack('js')
 

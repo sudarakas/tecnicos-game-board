@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use Alert;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -15,7 +16,7 @@ class GameController extends Controller
     public function index()
     {
         $games = Game::all();
-        return view('dashboard',compact('games'));
+        return view('dashboard', compact('games'));
     }
 
     /**
@@ -57,7 +58,21 @@ class GameController extends Controller
     public function show()
     {
         $games = Game::all();
-        return view('welcome',compact('games'));
+        return view('welcome', compact('games'));
+    }
+
+    public function play(Game $game)
+    {
+        if ($game->status == 'Unlocked') {
+
+            $game->status = 'Locked';
+            $game->save();
+            Alert::success('<b>Game Unlocked<br></b> ' . '<span class="h1 font-weight-bold mb-5 display-1 text-uppercase">' . $game->name . '</span>')->html()->persistent("Close");
+            return back();
+        } else {
+            Alert::warning('<b>Locked Game<br></b> ' . '<span class="h2 font-weight-bold mb-5 display-2 text-uppercase">' . 'Already Played Game' . '</span>')->html()->persistent("Close");
+            return back();
+        }
     }
 
     /**
@@ -76,7 +91,7 @@ class GameController extends Controller
         $game->status = request('status');
         $game->save();
 
-        return back()->withStatus(__('Game Successfully Updated.'));    }
+        return back()->withStatus(__('Game Successfully Updated.'));}
 
     /**
      * Update the specified resource in storage.

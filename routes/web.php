@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'GameController@show')->name('home');
+Route::get('game/play/{game}', ['as' => 'game.play', 'uses' => 'GameController@play']);
 Auth::routes();
 
 

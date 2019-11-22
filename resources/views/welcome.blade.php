@@ -19,9 +19,9 @@
                                     </div>
                                     <p class="mt-3 mb-0 text-muted text-sm">
                                         @if ($game->status == 'Unlocked')
-                                        <a href="" class="btn btn-success">Unlock</a>
+                                        <a href="{{route('game.play', [$game->id])}}" class="btn btn-success">Unlock</a>
                                         @else
-                                        <a href="" class="btn btn-danger">Locked</a>
+                                        <a href="{{route('game.play', [$game->id])}}" class="btn btn-danger">Locked</a>
                                         @endif
 
                                     </p>
